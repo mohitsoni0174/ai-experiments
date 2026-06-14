@@ -1,0 +1,11 @@
+import { createBrowserClient } from '@supabase/ssr'
+
+export const createClient = () => {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  // Validate URL and key
+  if (!url || !key || !/^https?:\/\//.test(url)) {
+    return null;
+  }
+  return createBrowserClient(url, key);
+}
